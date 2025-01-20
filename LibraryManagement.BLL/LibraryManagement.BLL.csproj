@@ -41,11 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="LibraryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryManagement.DAL\LibraryManagement.DAL.csproj">
+      <Project>{4d31e2e9-1100-4635-9bb2-62999b87bfba}</Project>
+      <Name>LibraryManagement.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibraryManagement.Models\LibraryManagement.Models.csproj">
+      <Project>{afd817fb-bd9c-4ad9-985c-f04bff667b18}</Project>
+      <Name>LibraryManagement.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
