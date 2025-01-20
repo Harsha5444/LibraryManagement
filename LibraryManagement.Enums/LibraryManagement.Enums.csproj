@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A23327F3-75E0-43D1-AB44-818F5E4FB47E}</ProjectGuid>
+    <ProjectGuid>{DC52120F-50F3-4FFE-9E0B-6029B572D599}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LibraryManagement.BLL</RootNamespace>
-    <AssemblyName>LibraryManagement.BLL</AssemblyName>
+    <RootNamespace>LibraryManagement.Enums</RootNamespace>
+    <AssemblyName>LibraryManagement.Enums</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,25 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LibraryService.cs" />
+    <Compile Include="LoginResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LibraryManagement.DAL\LibraryManagement.DAL.csproj">
-      <Project>{4d31e2e9-1100-4635-9bb2-62999b87bfba}</Project>
-      <Name>LibraryManagement.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LibraryManagement.Enums\LibraryManagement.Enums.csproj">
-      <Project>{dc52120f-50f3-4ffe-9e0b-6029b572d599}</Project>
-      <Name>LibraryManagement.Enums</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LibraryManagement.Models\LibraryManagement.Models.csproj">
-      <Project>{afd817fb-bd9c-4ad9-985c-f04bff667b18}</Project>
-      <Name>LibraryManagement.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

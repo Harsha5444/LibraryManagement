@@ -48,5 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryManagement.Enums\LibraryManagement.Enums.csproj">
+      <Project>{dc52120f-50f3-4ffe-9e0b-6029b572d599}</Project>
+      <Name>LibraryManagement.Enums</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

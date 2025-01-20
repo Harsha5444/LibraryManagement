@@ -1,19 +1,31 @@
-﻿using LibraryManagement.BLL;
-using System;
+﻿using System;
+using LibraryManagement.BLL;
+using LibraryManagement.Enums;
 
 namespace LibraryManagement.UI
 {
     internal class Program
     {
+        private readonly LibraryService _BLL = new LibraryService();
+
         static void Main(string[] args)
         {
-            LibraryService BLL = new LibraryService();
-            Console.Write("enter email: ");
+            Program ui = new Program();
+            ui.Login();
+            Console.ReadKey();
+        }
+        public void Login()
+        {
+            Console.Write("Enter email: ");
             string email = Console.ReadLine();
-            Console.Write("\nenter password: ");
+            Console.Write("Enter password: ");
             string password = Console.ReadLine();
-            (int result, string message)= BLL.ProcessLogin(email, password);
+            (LoginResult result, string message) = _BLL.ProcessLogin(email, password);
             Console.WriteLine(message);
+        }
+        public void Register()
+        {
+
         }
     }
 }

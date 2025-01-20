@@ -54,6 +54,10 @@
       <Project>{a23327f3-75e0-43d1-ab44-818f5e4fb47e}</Project>
       <Name>LibraryManagement.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LibraryManagement.Enums\LibraryManagement.Enums.csproj">
+      <Project>{dc52120f-50f3-4ffe-9e0b-6029b572d599}</Project>
+      <Name>LibraryManagement.Enums</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibraryManagement.Models\LibraryManagement.Models.csproj">
       <Project>{afd817fb-bd9c-4ad9-985c-f04bff667b18}</Project>
       <Name>LibraryManagement.Models</Name>

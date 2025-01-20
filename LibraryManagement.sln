@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.DAL", "LibraryManagement.DAL\LibraryManagement.DAL.csproj", "{4D31E2E9-1100-4635-9BB2-62999B87BFBA}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.Models", "LibraryManagement.Models\LibraryManagement.Models.csproj", "{AFD817FB-BD9C-4AD9-985C-F04BFF667B18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.UI", "LibraryManagement.UI\LibraryManagement.UI.csproj", "{BE30F28D-17EA-46FA-8D4A-1727039152D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.Enums", "LibraryManagement.Enums\LibraryManagement.Enums.csproj", "{DC52120F-50F3-4FFE-9E0B-6029B572D599}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BE30F28D-17EA-46FA-8D4A-1727039152D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE30F28D-17EA-46FA-8D4A-1727039152D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE30F28D-17EA-46FA-8D4A-1727039152D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC52120F-50F3-4FFE-9E0B-6029B572D599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC52120F-50F3-4FFE-9E0B-6029B572D599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC52120F-50F3-4FFE-9E0B-6029B572D599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC52120F-50F3-4FFE-9E0B-6029B572D599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
