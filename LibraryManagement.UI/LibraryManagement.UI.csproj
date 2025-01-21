@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LibraryManagementApp .cs" />
-    <Compile Include="LoginManager.cs" />
+    <Compile Include="MemberUI.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -7,7 +7,7 @@ namespace LibraryManagement.UI
     {
         static void Main(string[] args)
         {
-            var loginManager = new LoginManager();
+            var loginManager = new MemberUI();
             var menuManager = new MenuManager(); 
 
             bool exit = false;

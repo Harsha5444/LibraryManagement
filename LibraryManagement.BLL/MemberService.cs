@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace LibraryManagement.BLL
 {
-    public class LibraryService
+    public class MemberService
     {
         private readonly MemberRepository _mDAL = new MemberRepository();
 
