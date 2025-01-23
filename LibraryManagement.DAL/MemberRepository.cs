@@ -8,6 +8,33 @@ namespace LibraryManagement.DAL
 {
     public class MemberRepository
     {
+        public DataTable GetAllMembers()
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Library"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("usp_GetAllMembers", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            DataTable membersTable = new DataTable();
+                            adapter.Fill(membersTable);
+                            return membersTable;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error: {ex.Message}");
+                        return null; // Return null to indicate failure
+                    }
+                }
+            }
+        }
+
         public LoginResult UserLogin(string username, string password)
         {
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Library"].ConnectionString))

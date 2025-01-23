@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Design.cs" />
     <Compile Include="LibraryManagementApp .cs" />
     <Compile Include="MemberUI.cs" />
     <Compile Include="MenuManager.cs" />
@@ -64,6 +65,9 @@
       <Project>{afd817fb-bd9c-4ad9-985c-f04bff667b18}</Project>
       <Name>LibraryManagement.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BackendCode.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

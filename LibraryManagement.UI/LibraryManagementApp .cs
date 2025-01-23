@@ -1,4 +1,5 @@
 ﻿using System;
+using LibraryManagement.BLL;
 using LibraryManagement.Enums;
 
 namespace LibraryManagement.UI
@@ -8,8 +9,7 @@ namespace LibraryManagement.UI
         static void Main(string[] args)
         {
             var loginManager = new MemberUI();
-            var menuManager = new MenuManager(); 
-
+            var menuManager = new MenuManager();             
             bool exit = false;
             while (!exit)
             {

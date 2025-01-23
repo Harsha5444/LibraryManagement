@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.DAL;
 using LibraryManagement.Enums;
+using System.Data;
 using System.Text.RegularExpressions;
 
 namespace LibraryManagement.BLL
@@ -7,6 +8,24 @@ namespace LibraryManagement.BLL
     public class MemberService
     {
         private readonly MemberRepository _mDAL = new MemberRepository();
+
+        public (bool isSuccess, DataTable members, string message) GetAllMembers()
+        {
+            DataTable membersTable = _mDAL.GetAllMembers();
+
+            if (membersTable != null && membersTable.Rows.Count > 0)
+            {
+                return (true, membersTable, "Members retrieved successfully.");
+            }
+            else if (membersTable == null)
+            {
+                return (false, null, "An error occurred while retrieving members.");
+            }
+            else
+            {
+                return (false, null, "No members found.");
+            }
+        }
 
         public (LoginResult result, string message) ProcessLogin(string username, string password)
         {

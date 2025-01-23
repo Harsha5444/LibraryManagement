@@ -1,0 +1,233 @@
+﻿USE LibraryManagement;
+GO
+
+select * from Books
+select * from members
+select * from loans
+select * from CurrentLoans
+
+-- Create the database
+--CREATE DATABASE LibraryManagement;
+--GO
+
+-- Use the created database
+--USE LibraryManagement;
+--GO
+
+-- Create the Books table
+--CREATE TABLE Books (
+--    BookID INT IDENTITY(1,1) PRIMARY KEY,
+--    Title NVARCHAR(255) NOT NULL,
+--    Author NVARCHAR(255) NOT NULL,
+--    Category NVARCHAR(100),
+--    ISBN NVARCHAR(13) UNIQUE,
+--    Availability BIT DEFAULT 1 -- 1 for available, 0 for not available
+--);
+--GO
+--ALTER TABLE Members
+--ADD IsAdmin BIT NOT NULL DEFAULT 0;
+
+--ALTER TABLE Members
+--ADD Password NVARCHAR(255) NOT NULL DEFAULT 'Pass123!';
+
+--insert into members  (name,address, phone , email,isadmin, password)
+--values ('Admin', '999 SubWay St', '111-1111','adam.admin@LB',1,'123')
+
+-- Create the Members table
+--CREATE TABLE Members (
+--    MemberID INT IDENTITY(1,1) PRIMARY KEY,
+--    Name NVARCHAR(255) NOT NULL,
+--    Address NVARCHAR(255),
+--    Phone NVARCHAR(15),
+--    Email NVARCHAR(255) UNIQUE,
+--    MembershipDate DATE DEFAULT GETDATE()
+--);
+--GO
+
+--ALTER TABLE Members
+--ADD IsAdmin BIT NOT NULL DEFAULT 0;
+
+-- Create the Loans table
+--CREATE TABLE Loans (
+--    LoanID INT IDENTITY(1,1) PRIMARY KEY,
+--    BookID INT NOT NULL,
+--    MemberID INT NOT NULL,
+--    LoanDate DATE DEFAULT GETDATE(),
+--    DueDate DATE NOT NULL,
+--    ReturnDate DATE,
+--    FOREIGN KEY (BookID) REFERENCES Books(BookID),
+--    FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
+--);
+--GO
+
+-- Create indexes
+--CREATE INDEX IDX_Books_Title ON Books (Title);
+--CREATE INDEX IDX_Members_Name ON Members (Name);
+
+-- Insert sample data into Books table
+--INSERT INTO Books (Title, Author, Category, ISBN) VALUES
+--('The Great Gatsby', 'F. Scott Fitzgerald', 'Fiction', '9780743273565'),
+--('To Kill a Mockingbird', 'Harper Lee', 'Fiction', '9780061120084'),
+--('1984', 'George Orwell', 'Dystopian', '9780451524935'),
+--('The Catcher in the Rye', 'J.D. Salinger', 'Fiction', '9780316769488'),
+--('Pride and Prejudice', 'Jane Austen', 'Romance', '9780141439518');
+--GO
+
+-- Insert sample data into Members table
+--INSERT INTO Members (Name, Address, Phone, Email) VALUES
+--('John Doe', '123 Main St', '555-1234', 'john.doe@example.com'),
+--('Jane Smith', '456 Elm St', '555-5678', 'jane.smith@example.com'),
+--('Alice Johnson', '789 Oak St', '555-8765', 'alice.johnson@example.com'),
+--('Bob Brown', '101 Maple St', '555-4321', 'bob.brown@example.com');
+--GO
+
+-- Insert sample data into Loans table
+--INSERT INTO Loans (BookID, MemberID, DueDate) VALUES
+--(1, 1, DATEADD(DAY, 14, GETDATE())),
+--(2, 2, DATEADD(DAY, 14, GETDATE())),
+--(3, 3, DATEADD(DAY, 14, GETDATE())),
+--(4, 4, DATEADD(DAY, 14, GETDATE()));
+--GO
+
+-- Example View: Current Loans
+--CREATE VIEW CurrentLoans AS
+--SELECT
+--    l.LoanID,
+--    b.Title,
+--    m.Name AS MemberName,
+--    l.LoanDate,
+--    l.DueDate,
+--    l.ReturnDate
+--FROM Loans l
+--JOIN Books b ON l.BookID = b.BookID
+--JOIN Members m ON l.MemberID = m.MemberID
+--WHERE l.ReturnDate IS NULL;
+--GO
+
+-- Example Stored Procedure: Add a New Book
+--CREATE PROCEDURE AddNewBook
+--    @Title NVARCHAR(255),
+--    @Author NVARCHAR(255),
+--    @Category NVARCHAR(100),
+--    @ISBN NVARCHAR(13)
+--AS
+--BEGIN
+--    INSERT INTO Books (Title, Author, Category, ISBN)
+--    VALUES (@Title, @Author, @Category, @ISBN);
+--END;
+--GO
+
+-- Example Stored Procedure: Issue a Book
+--CREATE PROCEDURE IssueBook
+--    @BookID INT,
+--    @MemberID INT,
+--    @DueDate DATE
+--AS
+--BEGIN
+--    BEGIN TRANSACTION;
+
+--    UPDATE Books
+--    SET Availability = 0
+--    WHERE BookID = @BookID;
+
+--    INSERT INTO Loans (BookID, MemberID, DueDate)
+--    VALUES (@BookID, @MemberID, @DueDate);
+
+--    COMMIT TRANSACTION;
+--END;
+--GO
+
+-- Example Stored Procedure: Return a Book
+--CREATE PROCEDURE ReturnBook
+--    @LoanID INT
+--AS
+--BEGIN
+--    BEGIN TRANSACTION;
+
+--    UPDATE Loans
+--    SET ReturnDate = GETDATE()
+--    WHERE LoanID = @LoanID;
+
+--    UPDATE Books
+--    SET Availability = 1
+--    WHERE BookID = (SELECT BookID FROM Loans WHERE LoanID = @LoanID);
+
+--    COMMIT TRANSACTION;
+--END;
+--GO
+
+
+
+
+--CREATE PROCEDURE usp_UserLogin
+--    @Email NVARCHAR(50),
+--    @Password NVARCHAR(50) -- Assume you are storing passwords securely
+--AS
+--BEGIN
+--    DECLARE @IsAdmin BIT;
+
+--    SELECT @IsAdmin = IsAdmin
+--    FROM Members
+--    WHERE Email = @Email AND Password = @Password; -- Ensure passwords are hashed in real implementation
+
+--    IF @IsAdmin IS NULL
+--    BEGIN
+--        -- User not found
+--        RETURN -1;
+--    END
+--    ELSE IF @IsAdmin = 1
+--    BEGIN
+--        -- Admin login
+--        RETURN 1;
+--    END
+--    ELSE
+--    BEGIN
+--        -- Member login
+--        RETURN 0;
+--    END
+--END;
+
+
+--CREATE PROCEDURE usp_RegisterUser
+--    @Name NVARCHAR(255),
+--    @Address NVARCHAR(255),
+--    @Phone NVARCHAR(15),
+--    @Email NVARCHAR(255),
+--    @Password NVARCHAR(255), -- Ensure this is securely handled (e.g., hashed)
+--    @IsAdmin BIT = 0 -- Default is 0 (regular member)
+--AS
+--BEGIN
+--    SET NOCOUNT ON;
+
+--    -- Check if the email already exists
+--    IF EXISTS (SELECT 1 FROM Members WHERE Email = @Email)
+--    BEGIN
+--        -- Return code -1 indicates the email already exists
+--        RETURN -1;
+--    END
+
+--    -- Insert the new member
+--    BEGIN TRY
+--        INSERT INTO Members (Name, Address, Phone, Email, Password, IsAdmin)
+--        VALUES (@Name, @Address, @Phone, @Email, @Password, @IsAdmin);
+
+--        -- Return code 1 indicates successful registration
+--        RETURN 1;
+--    END TRY
+--    BEGIN CATCH
+--        -- Handle any unexpected errors (you can add more detailed error handling/logging here)
+--        -- Return code -2 indicates an error occurred
+--        RETURN -2;
+--    END CATCH
+--END;
+--GO
+
+
+--CREATE PROCEDURE usp_GetAllMembers
+--AS
+--BEGIN
+--    SELECT MemberID, Name, Address, Phone, Email, MembershipDate
+--    FROM Members
+--	where IsAdmin = 0
+--    ORDER BY MembershipDate DESC;
+--END;
